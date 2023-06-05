@@ -12,7 +12,7 @@ import { ErrorComponent } from './error/error.component';
 
 const appRoute: Routes = [
   // {path:'/', component: HomeComponent},
-  {path:'', redirectTo : 'Home' , pathMatch:'full'},
+  {path:'', redirectTo : '' , pathMatch:'full'},
   {path:'Home', component: HomeComponent},
   {path:'About', component: AboutComponent},
   {path:'Contact', component: ContactComponent},
