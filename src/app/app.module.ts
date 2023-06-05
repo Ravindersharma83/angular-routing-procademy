@@ -8,13 +8,16 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { CourseComponent } from './course/course.component';
+import { ErrorComponent } from './error/error.component';
 
 const appRoute: Routes = [
-  // {path:'Home', component: HomeComponent},
+  // {path:'/', component: HomeComponent},
   {path:'', redirectTo : 'Home' , pathMatch:'full'},
+  {path:'Home', component: HomeComponent},
   {path:'About', component: AboutComponent},
   {path:'Contact', component: ContactComponent},
   {path:'Course', component: CourseComponent},
+  {path:'**', component: ErrorComponent},
 ]
 
 @NgModule({
@@ -23,7 +26,8 @@ const appRoute: Routes = [
     HomeComponent,
     AboutComponent,
     ContactComponent,
-    CourseComponent
+    CourseComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
