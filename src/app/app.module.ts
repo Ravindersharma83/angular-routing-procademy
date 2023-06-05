@@ -10,14 +10,16 @@ import { ContactComponent } from './contact/contact.component';
 import { CourseComponent } from './course/course.component';
 import { ErrorComponent } from './error/error.component';
 import { DetailComponent } from './detail/detail.component';
+import { CourseGuardService } from './course-guard.service';
+import { AuthService } from './auth.service';
 
 const appRoute: Routes = [
   // {path:'/', component: HomeComponent},
-  {path:'', redirectTo : '' , pathMatch:'full'},
+  {path:'', redirectTo : 'Home' , pathMatch:'full'},
   {path:'Home', component: HomeComponent},
   {path:'About', component: AboutComponent},
   {path:'Contact', component: ContactComponent},
-  {path:'Course', component: CourseComponent},
+  {path:'Course', component: CourseComponent, canActivate : [CourseGuardService]},
   // {path:'Course/detail/:id', component: CourseComponent},
   
   // child routes
@@ -42,7 +44,7 @@ const appRoute: Routes = [
     AppRoutingModule,
     RouterModule.forRoot(appRoute),
   ],
-  providers: [],
+  providers: [CourseGuardService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
