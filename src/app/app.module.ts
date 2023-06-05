@@ -9,6 +9,7 @@ import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { CourseComponent } from './course/course.component';
 import { ErrorComponent } from './error/error.component';
+import { DetailComponent } from './detail/detail.component';
 
 const appRoute: Routes = [
   // {path:'/', component: HomeComponent},
@@ -17,7 +18,12 @@ const appRoute: Routes = [
   {path:'About', component: AboutComponent},
   {path:'Contact', component: ContactComponent},
   {path:'Course', component: CourseComponent},
-  {path:'Course/detail/:id', component: CourseComponent},
+  // {path:'Course/detail/:id', component: CourseComponent},
+  
+  // child routes
+  {path:'Course', children:[
+    {path:'detail/:id',component: DetailComponent}
+  ]},
   {path:'**', component: ErrorComponent},
 ]
 
@@ -28,7 +34,8 @@ const appRoute: Routes = [
     AboutComponent,
     ContactComponent,
     CourseComponent,
-    ErrorComponent
+    ErrorComponent,
+    DetailComponent
   ],
   imports: [
     BrowserModule,
