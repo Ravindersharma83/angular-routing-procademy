@@ -12,13 +12,21 @@ import { ErrorComponent } from './error/error.component';
 import { DetailComponent } from './detail/detail.component';
 import { CourseGuardService } from './course-guard.service';
 import { AuthService } from './auth.service';
+import { CanDeactivateGuardService } from './candeactivate-guard.service';
+import { FormsModule } from '@angular/forms';
 
 const appRoute: Routes = [
   // {path:'/', component: HomeComponent},
   {path:'', redirectTo : 'Home' , pathMatch:'full'},
   {path:'Home', component: HomeComponent},
   {path:'About', component: AboutComponent},
-  {path:'Contact', component: ContactComponent},
+
+  //canDeactivate guard
+  {path:'Contact', canDeactivate : [CanDeactivateGuardService], component: ContactComponent},
+
+
+  // {path:'Contact', component: ContactComponent},
+
   // {path:'Course', component: CourseComponent, canActivate : [CourseGuardService]},
   {path:'Course', component: CourseComponent},
   // {path:'Course/detail/:id', component: CourseComponent},
@@ -44,8 +52,9 @@ const appRoute: Routes = [
     BrowserModule,
     AppRoutingModule,
     RouterModule.forRoot(appRoute),
+    FormsModule
   ],
-  providers: [CourseGuardService, AuthService],
+  providers: [CourseGuardService, AuthService, CanDeactivateGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
