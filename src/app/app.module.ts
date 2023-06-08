@@ -19,12 +19,13 @@ const appRoute: Routes = [
   {path:'Home', component: HomeComponent},
   {path:'About', component: AboutComponent},
   {path:'Contact', component: ContactComponent},
-  {path:'Course', component: CourseComponent, canActivate : [CourseGuardService]},
+  // {path:'Course', component: CourseComponent, canActivate : [CourseGuardService]},
+  {path:'Course', component: CourseComponent},
   // {path:'Course/detail/:id', component: CourseComponent},
   
   // child routes
-  {path:'Course', children:[
-    {path:'detail/:id',component: DetailComponent}
+  {path:'Course', canActivateChild : [CourseGuardService], children:[
+    {path:'detail/:id',component: DetailComponent, canActivate : [CourseGuardService]}
   ]},
   {path:'**', component: ErrorComponent},
 ]

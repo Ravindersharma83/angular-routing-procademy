@@ -1,11 +1,11 @@
 import { Injectable } from "@angular/core";
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from "@angular/router";
+import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, Router, RouterStateSnapshot } from "@angular/router";
 import { AuthService } from "./auth.service";
 
 // to use one service into another service we use @Injectable
 @Injectable()
 
-export class CourseGuardService implements CanActivate{
+export class CourseGuardService implements CanActivate, CanActivateChild{
     constructor(private authService:AuthService, private router: Router){}
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) : boolean{
         // return true;  // user can access it
@@ -17,6 +17,11 @@ export class CourseGuardService implements CanActivate{
             this.router.navigate(['']);
             return false;
         }
+    }
+
+    // for protecting child components we use canActivateChildRoute
+    canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot) : boolean{
+        return this.canActivate(childRoute,state)
     }
 }
 
